@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+  <a  class="navbar-brand"  href="#"><img src="assets/images/brandbus.jpg"></a>
+   
+   <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+     <ul class="navbar-nav ">
+    <a style="font-size: 30px" class="nav-link " routerLink="/register" routerLinkActive="Active">Register</a>
+       
+     </ul>
+   </div>
+ </nav>
+ 
+ <div
+class="bg-image"
+style="
+  background-image: url('../assets/images/slider.jpg');
+  height: 100vh;
+"
+>
+
+<!--Login-->
+<div class="row pt-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card rounded-0">
+            <div class="card-header">
+                <h3 class="mb-0">Login</h3>
+            </div>
+<div class="signin">
+  
+    <form   [formGroup]= "signinform" (ngSubmit)="toCheck()">
+  
+      <div class="form-group m-3" > <!--This needs special characters to be added in validators and in html-->
+          <input formControlName = "Emailid" id="Emailid" type="text" class="form-control" placeholder="Email id">
+          <div  *ngIf= "Emailid.touched && Emailid.invalid" class="text-danger me-2 mt-3">
+            <div *ngIf= "Emailid.errors?.required" class="">Please enter your Email id*</div>
+            <div *ngIf= "Emailid.errors?.minlength||Emailid.errors?.maxlength" class="">Must be a 12 characted*</div>
+            <div *ngIf= "Emailid.errors?.email" class="">Only Alphabets and Spaces and Numbers are allowed*</div>
+          </div>
+
+      </div>
+  
+      <div class="form-group m-3"> <!--This needs special characters to be added in validators and in html-->
+        <input formControlName = "Pass_word" id="Pass_word" type="password" class="form-control " placeholder="Password">
+         <div  *ngIf= "Pass_word.touched && Pass_word.invalid" class="text-danger me-2 mt-3">
+          <div *ngIf= "Pass_word.errors?.required" class="">Please enter your Password*</div>
+          <div *ngIf= "Pass_word.errors?.minlength||Pass_word.errors?.maxlength" class="">Minimum 8 characters*</div>
+          <div *ngIf= "Pass_word.errors?.pattern" class="">Alphabets, Numbers Special characters are allowed*</div>
+        </div>
+  
+    </div>
+  
+  <div class="signin-button m-3">
+      <button class="btn btn-primary " [disabled]="signinform.invalid" type="submit">Login</button> &nbsp;
+    </div>
+      <div *ngIf= "err">
+        <h5 class="alert alert-warning d-flex justify-content-center" >{{error}}</h5>
+
+      </div>
+    </form>
+  </div>
+
+</div>
+</div>
+</div>
+
+  </div>
+  
+    

@@ -1,0 +1,12 @@
+.navbar-brand {
+    max-height: 80px;
+  
+  }
+  .container{
+      margin-left: 500px;
+      font-size: 30px;
+  }
+  p{
+      padding-top: 150px;
+      color:crimson;
+  }

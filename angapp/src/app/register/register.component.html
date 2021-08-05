@@ -1,0 +1,92 @@
+<nav class="navbar navbar-dark  bg-danger">
+    <a  class="navbar-brand"  href="#"><img src="assets/images/brandbus.jpg" class="img-responsive"></a>
+  </nav> 
+  
+  <div
+    class="bg-image"
+    style="
+      background-image: url('../assets/images/slider.jpg');
+      height: 100vh;
+    "
+  >
+  <div *ngIf= "registered">
+    <h3 class="alert d-flex justify-content-center" style="color:rgba(9, 9, 99, 0.575);">{{submit}}</h3>
+  </div>
+  <div class="row pt-5">
+      <div class="col-md-4 mx-auto">
+          <div class="card rounded-0">
+            
+            <form class=""  [formGroup]= "form" (ngSubmit)="save(form)">
+  
+      <h2>Register</h2>
+    <div class="form">
+        <div class="form-group">
+            <input formControlName = "Name" id="Name" autocomplete="off" type="text" class="form-control"  placeholder="Name">
+            <div *ngIf= "Name.touched && Name.invalid" class="text-danger">
+                <div *ngIf= "Name.errors?.required" >Please enter your name!</div>
+                <div *ngIf= "Name.errors?.minlength||Name.errors?.maxlength" >Minimum 5 characters and Maximum 30 characters*</div>
+                <div *ngIf= "Name.errors?.pattern" >Only Alphabets and Spaces are allowed*</div>
+            </div>
+        </div>
+        <div class="form-group"> <!--This needs special characters to be added in validators and in html-->
+            <input formControlName = "Email_id" id="Email_id" type="text" class="form-control"  placeholder="Email id">
+  
+            <div *ngIf= "Email_id.touched && Email_id.invalid" class="text-danger">
+                    <div *ngIf= "Email_id.errors?.required" class="">Please enter your Email id*</div>
+                    <div *ngIf= "Email_id.errors?.minlength||Email_id.errors?.maxlength" class="">Must be a 12 characted*</div>
+                    <div *ngIf= "Email_id.errors?.pattern" class="">Only Alphabets and Spaces and Numbers are allowed*</div>
+            </div>
+        </div>
+        <div class="form-group mt-2 ">
+            <input formControlName = "Mobile_Number" id="Mobile_Number" type="text" class="form-control" placeholder="Mobile Number">
+            <div *ngIf= "Mobile_Number.touched && Mobile_Number.invalid" class="text-danger">
+                    <div *ngIf= "Mobile_Number.errors?.required" class="">Please enter your Mobile Number*</div>
+                    <div *ngIf= "Mobile_Number.errors?.minlength||Mobile_Number.errors?.maxlength" class="">Must be 10 digits!</div>
+                    <div *ngIf= "Mobile_Number.errors?.pattern" class="">Only Numbers Allowed!</div>
+            </div>
+        </div>
+        <div class="form-group"> <!--This needs special characters to be added in validators and in html-->
+            <input formControlName = "Password" id="Password" type="password" class="form-control" placeholder="Password">
+      
+            <div *ngIf= "Password.touched && Password.invalid" class="text-danger">
+                    <div *ngIf= "Password.errors?.required" class="">Please enter your Password*</div>
+                    <div *ngIf= "Password.errors?.minlength||Password.errors?.maxlength" class="">Minimum 8 characters*</div>
+                    <div *ngIf= "Password.errors?.pattern" class="">Alphabets, Numbers Special characters are allowed*</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input formControlName = "DOB" id="DOB" type="date" class="form-control" placeholder="DOB(dd/mm/yyyy)">
+            <div *ngIf= "DOB.touched && DOB.invalid" class="text-danger">
+                    <div *ngIf= "DOB.errors?.required" class="">Please enter your Date of birth*</div>
+        
+            </div>
+        </div>
+        <!--<div class="form-group">
+            <input  formControlName="gender" type="radio">
+            <label>Male</label>&nbsp;
+            <input  formControlName="gender" type="radio">
+            <label>Female</label>
+        </div>-->
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" formControlName="gender" id="exampleRadios1" value="option1" >
+          <label class="form-check-label" for="exampleRadios1">
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" formControlName="gender" id="exampleRadios2" value="option2">
+          <label class="form-check-label" for="exampleRadios2">
+            Female
+          </label>
+        </div>
+        
+        <input type="submit" class="btn btn-success m-3" [disabled]="!form.valid" value="Register"> &nbsp;
+  
+        <input type="submit" routerLink="/login" class="btn btn-danger mt-2" value="login"></div>
+
+    </form>
+  </div>
+  </div>
+  </div>
+  
+  

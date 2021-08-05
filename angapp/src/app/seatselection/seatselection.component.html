@@ -1,0 +1,61 @@
+<nav class="navbar navbar-dark  bg-danger">
+  <a class="navbar-brand"  href="#"><img src="assets/images/brandbus.jpg" class="img-responsive"></a>
+</nav> 
+<!--Background image-->
+<div
+  class="bg-image"
+  style="
+    background-image: url('../assets/images/slider.jpg');
+    height: 100vh;
+  "
+>
+<div class="row">
+<div class="col-8">
+<div id="seats">
+  <h4>Select your seats</h4>
+    <ul>
+      <li *ngFor="let item of seats" [ngClass]="{disabled:this.selectedbus.reservedSeats?.includes(item.seatNo), selected:item.selected}" 
+      (click)="selectSeats(item.seatNo)">
+        {{item.seatNo}}
+      </li>
+    </ul>
+  </div>
+  <div class="ref">
+    <div style="width:20px;height:20px;background-color: tomato;margin-left: 200px;margin-top: 50px;padding-left: 20px;"class="booked">Booked</div>
+    <div style="width:20px;height:20px;background-color: rgb(237, 247, 250);margin-left: 200px;margin-top: 50px;padding-left: 20px;"class="available">Available</div>
+    <div style="width:20px;height:20px;background-color: lightgreen;margin-left: 200px;margin-top: 50px;padding-left: 20px;"class="selected">Selected</div>
+    </div>
+  </div>
+  <div class="col-4">
+  <h1>Booking Summary</h1>
+  <div id="summary">
+  <ul>
+    <li>From:{{selectedbus.leavingFrom}}</li>
+    <li>To:{{selectedbus.goingTo}}</li>
+    <li>Date:{{selectedbus.departingOn}}</li>
+    <li>Bus Type:{{selectedbus.busType}}</li>
+
+    <form #f="ngForm">
+      <div class="name" *ngFor="let seatNo of selectseat">
+        <table>
+        <td scope="row">Seat Number:</td>  
+        <td>{{seatNo}}</td>
+        </table>
+        <div class="row">
+      <div class="form-group col-md-6">
+        <input ngModel name="Name{{seatNo}}" id="Name" type="text" class="form-control" placeholder="passanger name" />
+        </div>
+     </div>
+      </div>
+    </form>
+    
+    <li>Bus Fare:{{busFare}}</li>
+    <li>Total tax:{{totalTax}}</li>
+    <li>Total fare:{{totalFare}}</li>
+  </ul>
+  <button (click)="pay(f.value)" class="btn btn-success" type="button">Continue To Payment</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  

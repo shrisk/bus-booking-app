@@ -1,0 +1,104 @@
+<nav class="navbar navbar-dark  bg-danger">
+    <a style="width: 20px" class="navbar-brand"  href="#"><img src="assets/images/brandbus.jpg" class="img-responsive"></a>
+  </nav> 
+  <!--Background image-->
+  <div
+    class="bg-image"
+    style="
+      background-image: url('../assets/images/slider.jpg');
+      height: 100vh;
+    "
+  >
+<div class="container " >
+    <div class="row justify-content-center pb-3" >
+      <div class="col block mt-2">
+        <form [formGroup]="form" class="container col-6 mt-4 p-4" (ngSubmit)="submit()">
+          <h3 class="mb-4">Payment</h3>
+          <div class="pay d-flex justify-content-between mb-3">
+              <div>Total Fare: {{selectedbus.pay}}</div>
+              <div>Transaction Id: {{transactionId}}</div>
+          </div>
+          <!-- Card-Type -->
+        <div class="form-group row mb-3">
+          <label class="col-sm-4 col-form-label">Card Type</label>
+          <div class=" col-2 form-check">
+              <label class="form-check-label m-2" for="cardtype">
+                  <input class="form-check-input" type="radio" formControlName="cardtype" name="cardtype" id="cardtype" value="visa">
+                  Visa
+              </label>
+          </div>
+<div class="col form-check">
+              <label class="form-check-label m-2" for="cardtype">
+                  <input class="form-check-input" type="radio" fornControlName="cardtype" name="cardtype" id="cardtype" value="mastercard">
+                  Master Card
+              </label>
+          </div>
+      </div>
+<!-- Card Number -->
+      <div class="form-group row mb-3">
+          <label for="cardnumber" class="col-sm-4 col-form-label">Card Number</label>
+          <div class="col-sm-6">
+              <input type="text" formControlName="cardnumber" class="form-control" id="cardnumber" autocomplete="off">
+              <div *ngIf="cardnumber.touched && cardnumber.invalid" class="text-danger">
+                  <div *ngIf="cardnumber.hasError('required')">Card Number is required</div>
+                  <div *ngIf="cardnumber.hasError('pattern')">Invalid Card Number</div>
+                </div>
+            </div>
+        </div>
+<!-- Name On The Card -->
+        <div class="form-group row mb-3">
+            <label for="cardname" class="col-sm-4 col-form-label">Name On The Card</label>
+            <div class="col-sm-6">
+                <input type="text" formControlName="cardname" class="form-control" id="cardname" autocomplete="off">
+                <div *ngIf="cardname.touched && cardname.invalid" class="text-danger">
+                    <div *ngIf="cardname.hasError('required')">Name On Card is required</div>
+                    <div *ngIf="cardname.hasError('pattern')">Invalid Name On Card</div>
+                  </div>
+              </div>
+          </div>
+  <!-- CVV -->
+          <div class="form-group row mb-3">
+              <label for="cvv" class="col-sm-4 col-form-label">CVV</label>
+              <div class="col-sm-6">
+                  <input type="password" formControlName="cvv" class="form-control" id="cvv" autocomplete="off">
+                  <div *ngIf="cvv.touched && cvv.invalid" class="text-danger">
+                      <div *ngIf="cvv.hasError('required')">Card Number is required</div>
+  <div *ngIf="cvv.hasError('pattern')">Invalid CVV</div>
+                  </div>
+              </div>
+          </div>
+  <!-- Expiry -->
+          <div class="form-group row mb-3">
+              <label for="expiry" class="col-sm-4 col-form-label">Expiry</label>
+              <div class="col-sm-3">
+                  <select class="form-select" formControlName="expiry" class="form-control">
+                      <option selected value="">Month</option>
+                      <option *ngFor="let month of months">{{ month }}</option>
+                  </select>
+  <div *ngIf="expiry.touched && expiry.invalid" class="text-danger">
+                      <div *ngIf="expiry.hasError('required')">Month is required</div>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <select class="form-select" formControlName="expiry" class="form-control">
+                      <option selected value="">Year</option>
+                      <option *ngFor="let year of years">{{ year }}</option>
+                  </select>
+  <div *ngIf="expiry.touched && expiry.invalid" class="text-danger">
+                      <div *ngIf="expiry.hasError('required')">Year is required</div>
+                  </div>
+              </div>
+            </div>
+  <!-- Submit and Reset -->
+          <div class="form-group offset-sm-4">
+              <input type="submit" class="btn btn-success m-3" [disabled]="!form.valid" value="Pay now">
+              <button type="reset" class="btn btn-danger">Reset</button>
+          </div>
+  
+      </form>
+      </div>
+  
+      
+    </div>
+  </div>
+  
