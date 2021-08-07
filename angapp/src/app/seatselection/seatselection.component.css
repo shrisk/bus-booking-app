@@ -46,6 +46,26 @@ h1{
 
 }
 #summary ul{
- list-style: none; 
+ list-style: none;
  font-size: 20px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.user-input {
+  width: 200px;
+}
+
+.gender {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+.male-gender {
+  margin-right: 20px;
 }

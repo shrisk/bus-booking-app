@@ -28,14 +28,14 @@ export class BussearchComponent implements OnInit, AfterViewInit {
       'availableSeats': '30',
       'fare': '600'
     },
-    {
-    'busType': 'Royal Exclusive',
-    'departure': '04:30PM',
-    'arrival': '03:00PM',
-    'date': '30/06/2021',
-    'availableSeats': '30',
-    'fare': '700'
-    }
+    // {
+    // 'busType': 'Royal Exclusive',
+    // 'departure': '04:30PM',
+    // 'arrival': '03:00PM',
+    // 'date': '30/06/2021',
+    // 'availableSeats': '30',
+    // 'fare': '700'
+    // }
   ]
   selectedbus: any;
   date: any;

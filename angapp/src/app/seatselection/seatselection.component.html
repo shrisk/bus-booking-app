@@ -43,9 +43,20 @@
         <td>{{seatNo}}</td>
         </table>
         <div class="row">
-      <div class="form-group col-md-6">
-        <input ngModel name="Name{{seatNo}}" id="Name" type="text" class="form-control" placeholder="passanger name" />
+      <div class="form-group user-info">
+        <input ngModel name="Name{{seatNo}}" id="Name" type="text" class="form-control user-input" placeholder="passanger name" />
+        <div class="gender">
+          <div class="male-gender">
+            <input [ngModel]="gender" type="radio" id="male" name="male" value="male" style="margin-right: 10px" >
+            <label for="male">Male</label>
+          </div>
+          <div class="female-gender">
+            <input [ngModel]="gender" type="radio" id="female" name="female" value="female" style="margin-right: 10px" >
+            <label for="female">Female</label><br>
+          </div>
         </div>
+
+      </div>
      </div>
       </div>
     </form>
