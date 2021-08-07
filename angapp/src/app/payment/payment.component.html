@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark  bg-danger">
     <a style="width: 20px" class="navbar-brand"  href="#"><img src="assets/images/brandbus.jpg" class="img-responsive"></a>
-  </nav> 
+  </nav>
   <!--Background image-->
   <div
     class="bg-image"
@@ -9,13 +9,14 @@
       height: 100vh;
     "
   >
+  <app-tabs></app-tabs>
 <div class="container " >
     <div class="row justify-content-center pb-3" >
       <div class="col block mt-2">
         <form [formGroup]="form" class="container col-6 mt-4 p-4" (ngSubmit)="submit()">
           <h3 class="mb-4">Payment</h3>
           <div class="pay d-flex justify-content-between mb-3">
-              <div>Total Fare: {{selectedbus.pay}}</div>
+              <div>Total Fare: {{selectedbus?.pay}}</div>
               <div>Transaction Id: {{transactionId}}</div>
           </div>
           <!-- Card-Type -->
@@ -92,13 +93,12 @@
   <!-- Submit and Reset -->
           <div class="form-group offset-sm-4">
               <input type="submit" class="btn btn-success m-3" [disabled]="!form.valid" value="Pay now">
-              <button type="reset" class="btn btn-danger">Reset</button>
+              <button type="reset" class="btn btn-danger" [routerLink]="['/bussearch']">Cancel</button>
           </div>
-  
+
       </form>
       </div>
-  
-      
+
+
     </div>
   </div>
-  

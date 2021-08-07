@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark  bg-danger">
   <a class="navbar-brand"  href="#"><img src="assets/images/brandbus.jpg" class="img-responsive"></a>
-</nav> 
+</nav>
 <!--Background image-->
 <div
   class="bg-image"
@@ -9,12 +9,13 @@
     height: 100vh;
   "
 >
+<app-tabs></app-tabs>
 <div class="row">
 <div class="col-8">
 <div id="seats">
   <h4>Select your seats</h4>
     <ul>
-      <li *ngFor="let item of seats" [ngClass]="{disabled:this.selectedbus.reservedSeats?.includes(item.seatNo), selected:item.selected}" 
+      <li *ngFor="let item of seats" [ngClass]="{disabled:this.selectedbus.reservedSeats?.includes(item.seatNo), selected:item.selected}"
       (click)="selectSeats(item.seatNo)">
         {{item.seatNo}}
       </li>
@@ -38,7 +39,7 @@
     <form #f="ngForm">
       <div class="name" *ngFor="let seatNo of selectseat">
         <table>
-        <td scope="row">Seat Number:</td>  
+        <td scope="row">Seat Number:</td>
         <td>{{seatNo}}</td>
         </table>
         <div class="row">
@@ -48,7 +49,7 @@
      </div>
       </div>
     </form>
-    
+
     <li>Bus Fare:{{busFare}}</li>
     <li>Total tax:{{totalTax}}</li>
     <li>Total fare:{{totalFare}}</li>
@@ -58,4 +59,3 @@
   </div>
   </div>
   </div>
-  

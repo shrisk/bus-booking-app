@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
   <a  class="navbar-brand"  href="#"><img src="assets/images/brandbus.jpg"></a>
-   
+
    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
      <ul class="navbar-nav ">
     <a style="font-size: 30px" class="nav-link " routerLink="/login" routerLinkActive="Active">Logout]-></a>
-       
+
      </ul>
    </div>
  </nav>
@@ -16,12 +16,13 @@
     height: 100vh;
   "
 >
-<div class="container-fluid">   
+<app-tabs></app-tabs>
+<div class="container-fluid">
 <div id="pdfTable" #pdfTable>
-  <h2 style="text-align: center;padding-top: 20px;">Your tickets were confirmed </h2> 
+  <h2 style="text-align: center;padding-top: 20px;">Your tickets were confirmed </h2>
   <div style="background-color:rgb(214, 237, 247);font-size: 20px;"class="row m-5 p-3">
     <div style="text-align: center;" class="col-md-4">
-        {{selectedbus.leavingFrom}} to {{selectedbus.goingTo}}    
+        {{selectedbus.leavingFrom}} to {{selectedbus.goingTo}}
     </div>
     <div style="text-align: center;" class="col-md-4">
         Departing on : {{selectedbus.departingOn}}
@@ -33,7 +34,7 @@
 
   <table class="table table-bordered">
     <thead>
-      <tr style="text-align: center;font-size: 18px;"> 
+      <tr style="text-align: center;font-size: 18px;">
         <th>Passenger Names</th>
         <th>Seat No</th>
         <th>Bus type</th>
@@ -44,13 +45,15 @@
         <td>{{selectedbus.passangername}}</td>
         <td>{{selectedbus.bookedSeats}}</td>
         <td>{{selectedbus.busType}}</td>
-      </tr> 
+      </tr>
     </tbody>
   </table>
   <div style="background-color: wheat;font-size: 20px;width:200px" class="col-md-4 m-5">
     Paid : {{selectedbus.pay}}/-
-</div> 
+</div>
 </div>
 <button style="margin-top: 20px;" class="btn btn-primary" (click)="downloadAsPDF()">Print the booking details</button>
+<button style="margin-top: 20px;" class="btn btn-primary logout-btn" [routerLink]="['/login']">Logout</button>
+
 </div>
 </div>
