@@ -10,15 +10,24 @@
 
 
 .container {
-       
-  
+
+
   margin-left: 200px;
-  
- 
+
+
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 10px 10px 10px 0px;
+}
+
+.editable-btn {
+  margin-right: 10px;
 }
 
 
 
 
-
-  

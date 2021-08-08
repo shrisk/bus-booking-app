@@ -1,0 +1,27 @@
+ul > li {
+  margin: 0px 10px;
+}
+
+.link-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.step-no {
+  width: 28px;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin-right: 10px;
+  background-color: white;
+  color: black;
+}
+
+.nav-link {
+  background-color: grey;
+  color: white;
+}
+
+.nav-link.active {
+  background-color: red !important;
+  color: white !important;
+}

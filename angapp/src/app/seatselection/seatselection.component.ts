@@ -18,14 +18,21 @@ export class SeatselectionComponent implements OnInit {
   totalFare: number;
   payment: any;
   seatNo: any;
+
+  gender: string;
   //@Input() selectedbus:any;
  constructor( private route:ActivatedRoute,private router : Router, private service:SharedService) { }
  form =new FormGroup({
-  Name:new FormControl('')
+  Name:new FormControl(''),
+  Gender: new FormControl('male')
 })
 
 get Name(){
 return this.form.controls['Name'];
+}
+
+get Gender() {
+  return this.form.controls['Gender'];
 }
 
 
@@ -37,7 +44,7 @@ return this.form.controls['Name'];
      this.onSelect=true;
      this.selectedbus={_id:this.selectedbus._id,passangername:Object.values(f),availableSeats:this.selectedbus.availableSeats,bookedSeats:this.selectseat,pay:this.totalFare,busType:this.selectedbus.busType,leavingFrom:this.selectedbus.leavingFrom,goingTo:this.selectedbus.goingTo,departingOn:this.selectedbus.departingOn}
       this.router.navigate(['/payment'],{queryParams:{selectedbus:JSON.stringify(this.selectedbus)}});
-     
+
     }
 
 
@@ -61,7 +68,7 @@ return this.form.controls['Name'];
     this.selectseat.push(seatNo);
   }
     }
-    
+
     this.busFare=this.selectedbus.fare * this.selectseat.length;
     this.totalTax=this.busFare/10;
     this.totalFare=this.busFare+this.totalTax;

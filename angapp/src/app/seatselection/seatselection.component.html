@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark  bg-danger">
   <a class="navbar-brand"  href="#"><img src="assets/images/brandbus.jpg" class="img-responsive"></a>
-</nav> 
+</nav>
 <!--Background image-->
 <div
   class="bg-image"
@@ -9,12 +9,13 @@
     height: 100vh;
   "
 >
+<app-tabs></app-tabs>
 <div class="row">
 <div class="col-8">
 <div id="seats">
   <h4>Select your seats</h4>
     <ul>
-      <li *ngFor="let item of seats" [ngClass]="{disabled:this.selectedbus.reservedSeats?.includes(item.seatNo), selected:item.selected}" 
+      <li *ngFor="let item of seats" [ngClass]="{disabled:this.selectedbus.reservedSeats?.includes(item.seatNo), selected:item.selected}"
       (click)="selectSeats(item.seatNo)">
         {{item.seatNo}}
       </li>
@@ -38,17 +39,28 @@
     <form #f="ngForm">
       <div class="name" *ngFor="let seatNo of selectseat">
         <table>
-        <td scope="row">Seat Number:</td>  
+        <td scope="row">Seat Number:</td>
         <td>{{seatNo}}</td>
         </table>
         <div class="row">
-      <div class="form-group col-md-6">
-        <input ngModel name="Name{{seatNo}}" id="Name" type="text" class="form-control" placeholder="passanger name" />
+      <div class="form-group user-info">
+        <input ngModel name="Name{{seatNo}}" id="Name" type="text" class="form-control user-input" placeholder="passanger name" />
+        <div class="gender">
+          <div class="male-gender">
+            <input [ngModel]="gender" type="radio" id="male" name="male" value="male" style="margin-right: 10px" >
+            <label for="male">Male</label>
+          </div>
+          <div class="female-gender">
+            <input [ngModel]="gender" type="radio" id="female" name="female" value="female" style="margin-right: 10px" >
+            <label for="female">Female</label><br>
+          </div>
         </div>
+
+      </div>
      </div>
       </div>
     </form>
-    
+
     <li>Bus Fare:{{busFare}}</li>
     <li>Total tax:{{totalTax}}</li>
     <li>Total fare:{{totalFare}}</li>
@@ -58,4 +70,3 @@
   </div>
   </div>
   </div>
-  

@@ -12,6 +12,7 @@ import { BussearchComponent } from './bussearch/bussearch.component';
 import { SeatselectionComponent } from './seatselection/seatselection.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     SeatselectionComponent,
   PaymentComponent,
   ConfirmationComponent,
+  TabsComponent,
 
 
  ],
