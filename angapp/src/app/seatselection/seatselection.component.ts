@@ -7,11 +7,11 @@ import { SharedService } from '../shared.service';
   selector: 'app-seatselection',
   templateUrl: './seatselection.component.html',
   styleUrls: ['./seatselection.component.css'],
-  providers:[BussearchComponent]
+  providers: [BussearchComponent]
 })
 export class SeatselectionComponent implements OnInit {
-  selectedbus:any;
-  onSelect:boolean;
+  selectedbus: any;
+  onSelect: boolean;
   bookingDetails: any;
   busFare: number;
   totalTax: number;
@@ -21,57 +21,64 @@ export class SeatselectionComponent implements OnInit {
 
   gender: string;
   //@Input() selectedbus:any;
- constructor( private route:ActivatedRoute,private router : Router, private service:SharedService) { }
- form =new FormGroup({
-  Name:new FormControl(''),
-  Gender: new FormControl('male')
-})
+  constructor(private route: ActivatedRoute, private router: Router, private service: SharedService) { }
+  form = new FormGroup({
+    Name: new FormControl(''),
+    gender: new FormControl('male')
+  })
 
-get Name(){
-return this.form.controls['Name'];
-}
+  get Name() {
+    return this.form.controls['Name'];
+  }
 
-get Gender() {
-  return this.form.controls['Gender'];
-}
+  get Gender() {
+    return this.form.controls['Gender'];
+  }
 
 
 
   ngOnInit() {
-      this.selectedbus=JSON.parse(this.route.snapshot.queryParamMap.get('selectedbus'))
-  }
-  pay(f:any){
-     this.onSelect=true;
-     this.selectedbus={_id:this.selectedbus._id,passangername:Object.values(f),availableSeats:this.selectedbus.availableSeats,bookedSeats:this.selectseat,pay:this.totalFare,busType:this.selectedbus.busType,leavingFrom:this.selectedbus.leavingFrom,goingTo:this.selectedbus.goingTo,departingOn:this.selectedbus.departingOn}
-      this.router.navigate(['/payment'],{queryParams:{selectedbus:JSON.stringify(this.selectedbus)}});
-
+    this.selectedbus = this.service.selectedbus.value;
+    const bus = JSON.parse(localStorage.getItem('selectedbus'));
+    if (this.selectedbus?.goingTo === bus.goingTo && this.selectedbus?.leavingFrom === bus.leavingFrom) {
+      this.selectedbus.bookedSeats = bus.bookedSeats;
     }
+  }
+  pay(f: any) {
+    this.onSelect = true;
+    this.selectedbus = { _id: this.selectedbus._id, passangername: Object.values(f), availableSeats: this.selectedbus.availableSeats, bookedSeats: this.selectseat, pay: this.totalFare, busType: this.selectedbus.busType, leavingFrom: this.selectedbus.leavingFrom, goingTo: this.selectedbus.goingTo, departingOn: this.selectedbus.departingOn }
+    this.service.selectedbus.next(this.selectedbus);
+    this.router.navigate(['/payment'], { queryParams: { selectedbus: JSON.stringify(this.selectedbus) } });
+  }
 
+  checkIfValid() {
+    return this.form.get('Name').value === '' || this.form.get('gender').value === '';
+  }
 
-  selectseat=[]
+  selectseat = []
   bus = {
     totalSeats: 36
   };
-  seats = [...new Array(this.bus.totalSeats)].map((item, index)=> {
+  seats = [...new Array(this.bus.totalSeats)].map((item, index) => {
     return {
       selected: false,
       seatNo: index + 1
     };
   });
-  selectSeats(seatNo:any) {
-    if (!this.selectedbus.reservedSeats?.includes(seatNo)) {
-        this.seats[seatNo-1].selected = !this.seats[seatNo-1].selected;
-        if(this.selectseat.includes(seatNo)) {
-          this.selectseat.splice(this.selectseat.indexOf(seatNo), 1)
-        }
-        else{
-    this.selectseat.push(seatNo);
-  }
+  selectSeats(seatNo: any) {
+    if (!this.selectedbus?.reservedSeats?.includes(seatNo)) {
+      this.seats[seatNo - 1].selected = !this.seats[seatNo - 1].selected;
+      if (this.selectseat.includes(seatNo)) {
+        this.selectseat.splice(this.selectseat.indexOf(seatNo), 1)
+      }
+      else {
+        this.selectseat.push(seatNo);
+      }
     }
 
-    this.busFare=this.selectedbus.fare * this.selectseat.length;
-    this.totalTax=this.busFare/10;
-    this.totalFare=this.busFare+this.totalTax;
+    this.busFare = this.selectedbus?.fare * this.selectseat.length;
+    this.totalTax = this.busFare / 10;
+    this.totalFare = this.busFare + this.totalTax;
   }
 
 

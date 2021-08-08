@@ -1,86 +1,84 @@
-
 <nav class="navbar navbar-dark  bg-danger">
-  <a style="width: 20px" class="navbar-brand"  href="#"><img src="assets/images/brandbus.jpg" class="img-responsive"></a>
+  <a style="width: 20px" class="navbar-brand" href="#"><img src="assets/images/brandbus.jpg" class="img-responsive"></a>
 </nav>
 <!--Background image-->
-<div
-  class="bg-image"
-  style="
+<div class="bg-image" style="
     background-image: url('../assets/images/slider.jpg');
     height: 100vh;
-  "
->
+  ">
 
-<app-tabs></app-tabs>
-<div *ngIf="!search" class="container" >
-  <div class="row justify-content-center pt-3" >
-    <div class="col-md-5 block mt-3">
+  <app-tabs></app-tabs>
+  <div *ngIf="!search" class="container">
+    <div class="row justify-content-center pt-3">
+      <div class="col-md-5 block mt-3">
 
-      <form [formGroup]= "searchForm" (ngSubmit)="submit()">
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label style="font-size: 20px;">Leaving from</label>
-            <select id="leavingFrom" formControlName="leavingFrom" class="form-control">
+        <form [formGroup]="searchForm" (ngSubmit)="submit()">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label style="font-size: 20px;">Leaving from</label>
+              <select id="leavingFrom" formControlName="leavingFrom" class="form-control">
 
-                    <option *ngFor="let leavingFrom of city1">{{leavingFrom}}</option>
-             </select>
-          </div>
-          <div class="form-group col-md-6">
-            <label style="font-size: 20px;">Going To</label>
-        <select id="goingTo" formControlName="goingTo" class="form-control">
+                <option [selected]="leavingFrom" *ngFor="let leavingFrom of city1">{{leavingFrom}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label style="font-size: 20px;">Going To</label>
+              <select id="goingTo" formControlName="goingTo" class="form-control">
 
-              <option *ngFor="let goingTo of city2">{{goingTo}}</option>
-       </select>
-         </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-12">
-            <label style="font-size: 20px;" for="">Departing On</label>
-            <input type="date" id="dateField" formControlName="departingOn" required class="form-control form-control-md" >
+                <option [selected]="goingTo" *ngFor="let goingTo of city2">{{goingTo}}</option>
+              </select>
+            </div>
           </div>
 
-        </div>
-        <button  type="submit"  [disabled]="searchForm.invalid && isSourceAndDestinationSame()" class="btn btn-block mt-3 btn-info btn-md">  Search Buses</button>
-        <div class="actions">
-          <button  *ngIf="visible" class="btn btn-info btn-lg editable-btn" (click)="edit()">  Edit</button>
-          <button  *ngIf="visible" class="btn btn-info btn-lg editable-btn" (click)="clear()">  Clear</button>
-        </div>
-      </form>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label style="font-size: 20px;" for="">Departing On</label>
+              <input type="date" id="dateField" formControlName="departingOn" required
+                class="form-control form-control-md">
+            </div>
+
+          </div>
+          <button type="submit" [disabled]="searchForm.invalid && isSourceAndDestinationSame()"
+            class="btn btn-block mt-3 btn-info btn-md"> Search Buses</button>
+          <div class="actions">
+            <button *ngIf="visible" class="btn btn-info btn-lg editable-btn" (click)="edit()"> Edit</button>
+            <button *ngIf="visible" class="btn btn-info btn-lg editable-btn" (click)="clear()"> Clear</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-5 slider mt-3 ">
+        <img src="../assets/images/Brandbuscoupen.PNG" class="img-fluid">
+      </div>
     </div>
+    <div class="container-fluid pr-5">
+      <table [hidden]="!visible && !search" style="color:black;font-size: 20px;background-color: white;" class="table">
 
-    <div class="col-md-5 slider mt-3 ">
-      <img src="../assets/images/Brandbuscoupen.PNG" class="img-fluid">
+        <thead>
+          <tr>
+            <th>Bus Type</th>
+            <th>Deptarture</th>
+            <th>Arrival</th>
+            <th>Date</th>
+            <th>Seats</th>
+            <th>Fare</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let b of buses'>
+            <td>{{b.busType}}</td>
+            <td>{{b.departure}}</td>
+            <td>{{b.arrival}}</td>
+            <td>{{date}}</td>
+            <td>{{b.availableSeats}}</td>
+            <td>{{b.fare}}</td>
+            <td> <button (click)="seats(b)" class="btn btn-block btn-success">View seats</button></td>
+          </tr>
+
+        </tbody>
+      </table>
     </div>
   </div>
-    <div class="container-fluid pr-5">
-          <table [hidden]="!visible && !search" style="color:black;font-size: 20px;background-color: white;" class="table">
-
-            <thead>
-              <tr>
-                  <th>Bus Type</th>
-                  <th>Deptarture</th>
-                  <th>Arrival</th>
-                  <th>Date</th>
-                  <th>Seats</th>
-                  <th>Fare</th>
-                  <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor='let b of buses'>
-                <td>{{b.busType}}</td>
-                <td>{{b.departure}}</td>
-                <td>{{b.arrival}}</td>
-                <td>{{date}}</td>
-                <td>{{b.availableSeats}}</td>
-                <td>{{b.fare}}</td>
-                <td> <button (click)="seats(b)" class="btn btn-block btn-success">View seats</button></td>
-              </tr>
-
-            </tbody>
-          </table>
-          </div>
-        </div>
-      </div>
-      <!--<app-seatselection *ngIf="visible==2" [selectedbus]="selectedbus"> </app-seatselection>-->
+</div>
+<!--<app-seatselection *ngIf="visible==2" [selectedbus]="selectedbus"> </app-seatselection>-->

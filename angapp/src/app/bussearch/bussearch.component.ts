@@ -91,19 +91,30 @@ export class BussearchComponent implements OnInit, AfterViewInit {
 
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selectedbus = this.service.selectedbus.value;
+    if (this.selectedbus) {
+      this.searchForm.controls['leavingFrom'].setValue(this.selectedbus.leavingFrom);
+      this.searchForm.controls['goingTo'].setValue(this.selectedbus.goingTo);
+      this.searchForm.controls['departingOn'].setValue(this.selectedbus.departingOn);
+    }
+  }
 
   ngAfterViewInit(): void {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById("dateField").setAttribute('min', today);
+    if (this.selectedbus === null) { 
+      this.searchForm.controls['leavingFrom'].setValue('');
+      this.searchForm.controls['goingTo'].setValue('');
+    }
+    
   }
 
   seats(booking: any) {
     this.search = true;
     this.selectedbus = { _id: booking._id, busType: booking.busType, departingOn: this.date, fare: booking.fare, leavingFrom: this.searchForm.value.leavingFrom, goingTo: this.searchForm.value.goingTo, reservedSeats: booking.reservedSeats, availableSeats: booking.availableSeats }
-    console.log(this.selectedbus)
+    this.service.selectedbus.next(this.selectedbus);
     this.router.navigate(['/seatselection'], { queryParams: { selectedbus: JSON.stringify(this.selectedbus) } });
-
   }
 
   clear() {

@@ -6,6 +6,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import htmlToPdfmake from 'html-to-pdfmake';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentComponent } from '../payment/payment.component';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-confirmation',
@@ -16,11 +17,11 @@ import { PaymentComponent } from '../payment/payment.component';
 
 export class ConfirmationComponent {
   selectedbus: any;
-  constructor(private router: Router, private route:ActivatedRoute) { }
+  constructor(private router: Router, private route:ActivatedRoute, private service: SharedService) { }
 
   ngOnInit(): void {
-    this.selectedbus=JSON.parse(this.route.snapshot.queryParamMap.get('selectedbus'))
- 
+    this.selectedbus= this.service.selectedbus.value;
+    localStorage.setItem('selectedbus', JSON.stringify(this.selectedbus));
   }
   @ViewChild('pdfTable') pdfTable: ElementRef;
   //PDF genrate button click function

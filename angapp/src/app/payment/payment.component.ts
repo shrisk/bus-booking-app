@@ -56,13 +56,13 @@ get cvv() {
   constructor(private router: Router, private route:ActivatedRoute, private service:SharedService) { }
 
   ngOnInit(): void {
-    this.selectedbus=JSON.parse(this.route.snapshot.queryParamMap.get('selectedbus'))
- 
+    this.selectedbus = this.service.selectedbus.value;
   }
  submit(){
    this.onPay=true;
-   this.selectedbus={_id:this.selectedbus._id,passangername:this.selectedbus.passangername,availableSeats:this.selectedbus.availableSeats,bookedSeats:this.selectedbus.bookedSeats,pay:this.selectedbus.pay,busType:this.selectedbus.busType,leavingFrom:this.selectedbus.leavingFrom,goingTo:this.selectedbus.goingTo,departingOn:this.selectedbus.departingOn}
-  this.router.navigate(['/confirmation'],{queryParams:{selectedbus:JSON.stringify(this.selectedbus)}});
+   this.selectedbus={_id:this.selectedbus?._id,passangername:this.selectedbus.passangername,availableSeats:this.selectedbus.availableSeats,bookedSeats:this.selectedbus.bookedSeats,pay:this.selectedbus.pay,busType:this.selectedbus.busType,leavingFrom:this.selectedbus.leavingFrom,goingTo:this.selectedbus.goingTo,departingOn:this.selectedbus.departingOn}
+   this.service.selectedbus.next(this.selectedbus);
+   this.router.navigate(['/confirmation'],{queryParams:{selectedbus:JSON.stringify(this.selectedbus)}});
   this.service.updateDetails({_id: this.selectedbus._id, bookedSeats : this.selectedbus.bookedSeats, availableSeats:this.selectedbus.availableSeats})
  .subscribe(res=>{
     console.log(res);

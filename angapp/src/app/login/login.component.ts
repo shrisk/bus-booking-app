@@ -43,6 +43,7 @@ toCheck(){
     if(c){
     //navigate by url
    console.log(c);
+   this.service.selectedbus.next(null);
   this.router.navigateByUrl('/bussearch')
    console.log(a);
     }
