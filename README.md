@@ -14,9 +14,9 @@
     
 # To Add bus using POSTMAN
 
-Request: POST
-URL: http://localhost:8081/api/bus
-Body:   
+    Request: POST
+    URL: http://localhost:8081/api/bus
+    Body:   
         {
           "busType": "Asia Line",
           "departure": "11:00PM",
