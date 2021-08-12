@@ -33,6 +33,7 @@ h4{
 }
 #seats ul li.disabled{
   background-color: tomato;
+  pointer-events: none;
 }
 #seats ul li.selected{
   background-color:lightgreen;

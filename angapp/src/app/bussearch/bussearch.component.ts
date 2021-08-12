@@ -19,15 +19,15 @@ export class BussearchComponent implements OnInit, AfterViewInit {
 
   visible: boolean;
   search: boolean;
-  buses = [
-    {
-      'busType': 'Asia Line',
-      'departure': '11:00PM',
-      'arrival': '10:00PM',
-      'date': '30/06/2021',
-      'availableSeats': '30',
-      'fare': '600'
-    },
+  // buses = [
+    // {
+    //   'busType': 'Asia Line',
+    //   'departure': '11:00PM',
+    //   'arrival': '10:00PM',
+    //   'date': '30/06/2021',
+    //   'availableSeats': '30',
+    //   'fare': '600'
+    // },
     // {
     // 'busType': 'Royal Exclusive',
     // 'departure': '04:30PM',
@@ -36,7 +36,7 @@ export class BussearchComponent implements OnInit, AfterViewInit {
     // 'availableSeats': '30',
     // 'fare': '700'
     // }
-  ]
+  // ]
   selectedbus: any;
   date: any;
   array: Bus[];
@@ -79,10 +79,10 @@ export class BussearchComponent implements OnInit, AfterViewInit {
     this.service.busDetails().subscribe((busdetails: Busdetails) => {
       this.array = [];
       for (let businfo of busdetails.bus) {
-
-        if (businfo.leavingFrom === location1 && businfo.goingTo === location2) {
-          this.array.push(businfo);
-        }
+        this.array.push(businfo);
+        // if (businfo.leavingFrom === location1 && businfo.goingTo === location2) {
+          
+        // }
       }
       console.log(this.array)
       this.date = this.searchForm.value.departingOn;

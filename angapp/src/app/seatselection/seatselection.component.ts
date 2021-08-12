@@ -18,6 +18,7 @@ export class SeatselectionComponent implements OnInit {
   totalFare: number;
   payment: any;
   seatNo: any;
+  passengerNames: any[] = [];
 
   gender: string;
   //@Input() selectedbus:any;
@@ -45,8 +46,9 @@ export class SeatselectionComponent implements OnInit {
     }
   }
   pay(f: any) {
+    this.passengerNames.push(this.Name.value);
     this.onSelect = true;
-    this.selectedbus = { _id: this.selectedbus._id, passangername: Object.values(f), availableSeats: this.selectedbus.availableSeats, bookedSeats: this.selectseat, pay: this.totalFare, busType: this.selectedbus.busType, leavingFrom: this.selectedbus.leavingFrom, goingTo: this.selectedbus.goingTo, departingOn: this.selectedbus.departingOn }
+    this.selectedbus = { _id: this.selectedbus._id, passangername: this.passengerNames, availableSeats: this.selectedbus.availableSeats, bookedSeats: this.selectseat, pay: this.totalFare, busType: this.selectedbus.busType, leavingFrom: this.selectedbus.leavingFrom, goingTo: this.selectedbus.goingTo, departingOn: this.selectedbus.departingOn }
     this.service.selectedbus.next(this.selectedbus);
     this.router.navigate(['/payment'], { queryParams: { selectedbus: JSON.stringify(this.selectedbus) } });
   }
@@ -72,6 +74,9 @@ export class SeatselectionComponent implements OnInit {
         this.selectseat.splice(this.selectseat.indexOf(seatNo), 1)
       }
       else {
+        if (this.selectseat.length !== 0) {
+          this.passengerNames.push(this.Name.value);
+        }
         this.selectseat.push(seatNo);
       }
     }
